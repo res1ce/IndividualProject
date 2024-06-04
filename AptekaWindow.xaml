@@ -1,0 +1,90 @@
+﻿<Window x:Class="IndidProject.AptekaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IndidProject"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Главная" Height="450" Width="1000" ResizeMode="NoResize">
+    <Grid>
+        <TextBlock Text="Управление учётом поставок препаратов" FontSize="20" HorizontalAlignment="Center"></TextBlock>
+        <TabControl Margin="0 30 0 0">
+            <TabItem Header="Аптеки">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition Width="500"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="AptekaAddButton" Content="Добавить аптеку" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 10 0 0" Click="AddApteka_Button"></Button>
+                    <DataGrid x:Name="AptekaDataGrid" ItemsSource="{Binding Aptekas}" CanUserAddRows="False" CellEditEnding="AptekaDataGrid_CellEditEnding" AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="1000" Grid.ColumnSpan="2" Margin="0 55 0 0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код аптеки" Binding="{Binding number}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="Название" Binding="{Binding name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTextColumn Header="Адрес" Binding="{Binding address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTextColumn Header="Начало работы (Часы)" Binding="{Binding start_work_time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTextColumn Header="Конец работы (Часы)" Binding="{Binding end_work_time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTemplateColumn Header="" x:Name="AptekaDeleteButton">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="AptekaDeleteButton" Content="Удалить" Click="Delete_Button_Apteka_Click" Tag="{Binding number}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>                        
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Препараты">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition Width="500"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="DrugsAddButton" Content="Добавить препарат" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 10 0 0" Click="AddDrug_Button"></Button>
+                    <DataGrid x:Name="DrugsDataGrid" ItemsSource="{Binding Drugs}" CanUserAddRows="False" CellEditEnding="DrugsDataGrid_CellEditEnding" AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="1000" Grid.ColumnSpan="2" Margin="0 55 0 0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код препарата" Binding="{Binding number}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Название" Binding="{Binding name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTextColumn Header="Группа" Binding="{Binding groupName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Доза" Binding="{Binding dosage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTextColumn Header="Срок хранения (дни)" Binding="{Binding expiration_days, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTemplateColumn Header="" x:Name="DrugDeleteButton">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Удалить" Click="Delete_Button_Drug_Click" Tag="{Binding number}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="В наличии">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition Width="500"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="AvaibalityAddButton" Content="Добавить препарат в наличие" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 10 0 0" Click="AddAvalibality_Button"></Button>
+                    <DataGrid x:Name="AvailabilitysDataGrid" ItemsSource="{Binding Avaibalities}" CanUserAddRows="False" CellEditEnding="AvailabilitysDataGrid_CellEditEnding" AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="1000" Grid.ColumnSpan="2" Margin="0 55 0 0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код аптеки" Binding="{Binding number_apteka}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Код препарата" Binding="{Binding number_drug}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Дата выпуска" Binding="{Binding release_date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTextColumn Header="Количество" Binding="{Binding quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTextColumn Header="Цена" Binding="{Binding cost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTemplateColumn Header="" x:Name="AvaibalityDeleteButton">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Удалить" Click="Delete_Button_Avaibality_Click" Tag="{Binding id}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

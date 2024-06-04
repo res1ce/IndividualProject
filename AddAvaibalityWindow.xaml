@@ -1,0 +1,19 @@
+﻿<Window x:Class="IndidProject.AddAvaibalityWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IndidProject"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Добавление" Height="450" Width="400">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
+        <Label Content="Добавление препарата в наличие" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <ComboBox x:Name="AptekaComboBox" materialDesign:HintAssist.Hint="Аптека"></ComboBox>
+        <ComboBox x:Name="DrugComboBox" materialDesign:HintAssist.Hint="Препарат"></ComboBox>
+        <DatePicker x:Name="ReleaseDateSelect" materialDesign:HintAssist.Hint="Дата изготовление"/>
+        <TextBox x:Name="TextBoxQuantity" TextWrapping="Wrap" Width="200" materialDesign:HintAssist.Hint="Количество" PreviewTextInput="NumberPreviewTextInput" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="TextBoxCost" TextWrapping="Wrap" Width="200" materialDesign:HintAssist.Hint="Цена" PreviewTextInput="FloatPreviewTextInput" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <Button Content="Добавить" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Click="Add_Button_Click" Cursor="Hand"/>
+    </StackPanel>
+</Window>
